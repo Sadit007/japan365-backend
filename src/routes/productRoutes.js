@@ -1,5 +1,3 @@
-import pool from "../config/db";
-
 import express from "express";
 
 const router = express.Router();
@@ -9,12 +7,12 @@ router.get("/products", getAllProducts);
 router.get("/product/:id", getProductByID);
 
 router.post("/product", addProduct);
-router.post("/product/:id/variations", addProductVeriation);
+router.post("/product/:id/veriations", addProductVeriation);
 
-router.put("/variations/:variation_id", updateVariationByID);
+router.put("/veriations/:veriation_id", updateVeriationByID);
 
 router.delete('/products/:id', deleteProductByID);
-router.delete('/variations/:variation_id', deleteVariation);
+router.delete('/veriations/:veriation_id', deleteVeriation);
 
 
 export default productRoutes;

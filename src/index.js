@@ -25,18 +25,16 @@ app.get("/", async(req, res)=>{
 })
 
 //Routes
-app.use("/api/", userRoutes);
 app.use('/api', productRoutes);
-app.use('/api', categoryRoutes);
-app.use('/api', brandRoutes);
-app.use('/api', locationRoutes);
-app.use('/api', inventoryRoutes);
+// app.use('/api', categoryRoutes);
+// app.use('/api', brandRoutes);
+// app.use('/api', locationRoutes);
+// app.use('/api', inventoryRoutes);
 
 //Error handling middleware
 app.use(errorHandling);
 
 //Server Running
-console.log("PORT:", process.env.PORT);
 app.listen(port, ()=>{
     console.log(`server running on http://localhost:${port}`)
 });

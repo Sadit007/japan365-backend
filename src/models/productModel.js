@@ -159,7 +159,7 @@ export const addProductService = async (product, variations = []) => {
     }
 };
 
-export const addProductVariationService = async (productId, variation) => {
+export const addProductVeriationService = async (productId, variation) => {
     const client = await pool.connect();
     
     try {
@@ -209,7 +209,7 @@ export const addProductVariationService = async (productId, variation) => {
     }
 };
 
-export const updateVariationByIDService = async (variationId, updates) => {
+export const updateVeriationByIDService = async (variationId, updates) => {
     const fields = [];
     const values = [];
     let paramIndex = 1;
@@ -245,8 +245,8 @@ export const deleteProductByIDService = async (id) => {
     return result.rows[0] || null;
 };
 
-export const deleteVariationService = async (variationId) => {
+export const deleteVeriationService = async (variationID) => {
     const query = `DELETE FROM product_variations WHERE id = $1 RETURNING *;`;
-    const result = await pool.query(query, [variationId]);
+    const result = await pool.query(query, [variationID]);
     return result.rows[0] || null;
 };

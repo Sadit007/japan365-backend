@@ -5,8 +5,8 @@ import pool from "./config/db.js";
 import productRoutes from "./routes/productRoutes.js";
 import categoryRoutes from './routes/categoryRoutes.js';
 import brandRoutes from './routes/brandRoutes.js';
-// import locationRoutes from './routes/locationRoutes.js';
-// import inventoryRoutes from './routes/inventoryRoutes.js';
+import locationRoutes from './routes/locationRoutes.js';
+import inventoryRoutes from './routes/inventoryRoutes.js';
 import errorHandling from "./middlewares/errorHandler.js";
 
 dotenv.config();
@@ -28,8 +28,8 @@ app.get("/", async(req, res)=>{
 app.use('/api', productRoutes);
 app.use('/api', categoryRoutes);
 app.use('/api', brandRoutes);
-// app.use('/api', locationRoutes);
-// app.use('/api', inventoryRoutes);
+app.use('/api', locationRoutes);
+app.use('/api', inventoryRoutes);
 
 //Error handling middleware
 app.use(errorHandling);

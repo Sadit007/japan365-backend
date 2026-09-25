@@ -1,4 +1,5 @@
 import express from "express";
+import { processSale, getAvailableImeis, receiveStock } from "../controllers/inventoryController.js";
 
 const router = express.Router();
 
@@ -9,4 +10,4 @@ router.get('/variations/:variation_id/imei', getAvailableImeis);
 router.patch('/stock/sell', processSale);
 
 
-export default inventoryRoutes;
+export default router;

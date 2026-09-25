@@ -13,7 +13,7 @@ const handleResponse = (res, status, message, data)=>{
 export const getAllProducts = async(req, res, next)=>{
     try{
         const result = await getAllProductsService();
-        handleResponse(res, 200, "Users Fetched Successfully", result);
+        handleResponse(res, 200, "Products Fetched Successfully", result);
     }catch(error){
         next(error);
     }
@@ -33,35 +33,37 @@ export const getProductByID = async(req, res, next) =>{
      }
 };
 
-export const addProduct = async(req, res, next) =>{
-    try{
-        const{product, veriations = []} = req.body;
+export const addProduct = async (req, res, next) => {
+    try {
+        // 1. Spelled correctly as "variations", and removed the = [] default
+        const { product, variations } = req.body;
 
-        if(!product || !product.name){
-            return handleResponse(res, 400, "Product Name is required", null);
+        if (!product || !product.name) {
+            return handleResponse(res, 400, "Product Name is required");
         }
 
-        if(!Array.isArray(veriations)){
-            return(res, 400, "Variations must be an array", null);
+        // 2 & 3. Fixed response function and added a check for empty arrays (length === 0)
+        if (!variations || !Array.isArray(variations) || variations.length === 0) {
+            return handleResponse(res, 400, "A product must have at least one variation.");
         }
 
-        const result = await addProductService(product, veriations);
+        const result = await addProductService(product, variations);
         handleResponse(res, 201, "Product Created Successfully", result);
-    }catch(error){
+    } catch (error) {
         next(error);
     }
 };
 
-export const addProductVeriation = async(req, res, next) =>{
+export const addProductVariation = async(req, res, next) =>{
     try{
         const {id}= req.params;
-        const {veriation} = req.body;
+        const {variation} = req.body;
 
-        if(!veriation){
+        if(!variation){
             return handleResponse(res, 400, "Veriation Required", null);
         }
 
-        const result = await addProductVeriationService(id, veriation);
+        const result = await addProductVeriationService(id, variation);
         handleResponse(res, 201, "veration added successfully", result);
     }catch(error){
         next(error);

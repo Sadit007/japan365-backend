@@ -62,7 +62,7 @@ export const getProductByIDService = async (id) => {
         GROUP BY p.id, b.name, c.name;
     `;
 
-    const result = await pool.query(query);
+    const result = await pool.query(query, [id]);
     return result.rows[0] || null;
 };
 

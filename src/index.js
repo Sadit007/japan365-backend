@@ -4,9 +4,9 @@ import dotenv from "dotenv";
 import pool from "./config/db.js";
 import productRoutes from "./routes/productRoutes.js";
 import categoryRoutes from './routes/categoryRoutes.js';
-import brandRoutes from './routes/brandRoutes.js';
-import locationRoutes from './routes/locationRoutes.js';
-import inventoryRoutes from './routes/inventoryRoutes.js';
+// import brandRoutes from './routes/brandRoutes.js';
+// import locationRoutes from './routes/locationRoutes.js';
+// import inventoryRoutes from './routes/inventoryRoutes.js';
 import errorHandling from "./middlewares/errorHandler.js";
 
 dotenv.config();
@@ -26,7 +26,7 @@ app.get("/", async(req, res)=>{
 
 //Routes
 app.use('/api', productRoutes);
-// app.use('/api', categoryRoutes);
+app.use('/api', categoryRoutes);
 // app.use('/api', brandRoutes);
 // app.use('/api', locationRoutes);
 // app.use('/api', inventoryRoutes);

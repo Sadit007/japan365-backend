@@ -1,13 +1,30 @@
 import express from "express";
+import { 
+    getCategories,
+    createCategory,
+    updateCategoryByID,
+    getCategoryByID,
+    deleteCategoryByID,
+    getSubCategoriesByID,
+    addSubcategoryByID
+
+} from "../controllers/categoryController.js";
 
 const router = express.Router();
 
 
-//categories
+
+// MAIN CATEGORIES
 router.get("/categories", getCategories);
-router.get("/category/:id", getCategoryByID)
+router.post("/categories", createCategory);
 
-router.post("/category", createCategory);
-router.put('/category/:id', updateCategoryByID);
+// SINGLE CATEGORY OPERATIONS
+router.get("/categories/:id", getCategoryByID);
+router.put('/categories/:id', updateCategoryByID);
+router.delete("/categories/:id", deleteCategoryByID);
 
-export default categoryRoutes;
+// SUBCATEGORIES (Nested Routes)
+router.get("/categories/:id/subcategories", getSubCategoriesByID);
+router.post("/categories/:id/subcategories", addSubcategoryByID);
+
+export default router;

@@ -1,6 +1,6 @@
 //response function
 
-import { addProductService, deleteProductByIDService, getAllProductsService, getProductByID, addProductVeriationService, deleteVeriationService } from "../models/productModel";
+import { addProductService, deleteProductByIDService, getAllProductsService, addProductVeriationService, deleteVeriationService, getProductByIDService } from "../models/productModel.js";
 
 const handleResponse = (res, status, message, data)=>{
     res.status(status).json({
@@ -21,8 +21,8 @@ export const getAllProducts = async(req, res, next)=>{
 
 export const getProductByID = async(req, res, next) =>{
      try{
-        const id = await req.params.id;
-        const product = await getProductByID(id);
+        const {id} = req.params;
+        const product = await getProductByIDService(id);
 
         if(!product){
             return handleResponse(res, 404, "product not found");
@@ -54,7 +54,7 @@ export const addProduct = async(req, res, next) =>{
 
 export const addProductVeriation = async(req, res, next) =>{
     try{
-        const {id}= req.params.id;
+        const {id}= req.params;
         const {veriation} = req.body;
 
         if(!veriation){
@@ -70,26 +70,26 @@ export const addProductVeriation = async(req, res, next) =>{
 
 export const deleteProductByID = async(req, res, next) =>{
     try{
-        const{id} = req.params.id;
+        const{id} = req.params;
         const result = await deleteProductByIDService(id);
         if(!result){
             return handleResponse(res, 404, "product not found", null);
         }
-        handleResponse(res, 204, "Product Deleted Successfully", null)
+        handleResponse(res, 200, "Product Deleted Successfully", null)
     }catch(error){
         next(error);
     }
 }
 
-export const deleteVeriationByID = async(veriationID)=>{
+export const deleteVeriationByID = async(req, res, next)=>{
     try{
-        const{veriationID} = req.params.veriationID;
-        const result = await deleteVeriationService(id);
+        const{veriationID} = req.params;
+        const result = await deleteVeriationService(veriationID);
         
         if(!result){
             return handleResponse(res, 404, "veriant not found", null);
         }
-        handleResponse(res, 204, "Veriant Deleted Successfully", null)
+        handleResponse(res, 200, "Veriant Deleted Successfully", null)
 
     }catch(error){
         next(error);

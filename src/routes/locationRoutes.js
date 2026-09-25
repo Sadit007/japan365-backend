@@ -2,15 +2,13 @@ import express from "express";
 
 const router = express.Router();
 
-
-
 //location
 router.get('/locations', getLocations);
-router.get("/location/:id", getLocationByID);
+router.get("/locations/:id", getLocationByID);
 
-router.post("/location", createLocation);
-router.put("location/id", updateLocationByID);
+router.post("/locations", createLocation);
+router.put("/locations/:id", updateLocationByID);
 
-router.delete("location/id", deleteLocationByID);
+router.delete("/locations/:id", deleteLocationByID);
 
-export default locationRoutes;
+export default router;

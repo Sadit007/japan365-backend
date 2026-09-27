@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type":"module",
+  "type": "module",
   "scripts": {
     "dev": "nodemon src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -16,9 +16,12 @@
     "dotenv": "^18.0.3",
     "express": "^5.2.1",
     "joi": "^18.2.9",
-    "pg": "^8.23.0"
+    "pg": "^8.23.0",
+    "swagger-jsdoc": "^6.3.0",
+    "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
-    "nodemon": "^3.1.14"
+    "nodemon": "^3.1.14",
+    "swagger-autogen": "^2.23.7"
   }
 }
